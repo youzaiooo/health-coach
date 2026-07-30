@@ -36,26 +36,33 @@ For every meal photo, food description, menu, or package label:
 1. Identify foods and separate packaged items, single ingredients, and mixed dishes.
 2. Transcribe a visible nutrition label and net content exactly when supplied. Treat
    this as the primary nutrition source for that product.
-3. For foods without a label, look up a traceable source in this order:
-   the `boohee-food-db` Skill and its private Wiki cache; product manufacturer or
-   restaurant; an authoritative food-composition database;
-   then a reproducible recipe with stated ingredients. Record the URL or citation
-   and access date. Do not use search snippets, lifestyle articles, or uncited
-   database entries as numeric sources.
-4. Estimate a photo-only portion as a range, not a precise weight. State the visual
+3. For foods without a label, aggregate two traceable sources: load
+   `boohee-food-db` to use its private Wiki cache or the Boohee API, and use
+   `web_search` plus `web_extract` to obtain an official manufacturer, restaurant,
+   or authoritative food-composition source. Record the URL or citation and access
+   date. Do not use search snippets, lifestyle articles, or uncited database entries
+   as numeric sources.
+4. Compare only values with the same basis (for example, per 100g or the same
+   labelled serving). Do not average mismatched or materially conflicting values.
+   Prefer a user-provided package label, then the product's official source. State
+   any unresolved discrepancy and keep both source trails.
+5. If Boohee has no match, its daily quota is exhausted, or the API fails, continue
+   with the authoritative web source and label the result as web-derived rather than
+   silently inventing a replacement value.
+6. Estimate a photo-only portion as a range, not a precise weight. State the visual
    anchors used (container, utensils, known package size, or plate dimensions) and
    mark confidence `high`, `medium`, or `low`.
-5. For a mixed cooked dish, list its visible components and give a wider range. Ask
+7. For a mixed cooked dish, list its visible components and give a wider range. Ask
    for the key missing facts when they would materially change the result: recipe,
    oil, sauces, sugar, edible portion, package net content, or serving count.
-6. Calculate the best estimate and range for energy, protein, carbohydrate, total
+8. Calculate the best estimate and range for energy, protein, carbohydrate, total
    fat, fiber, saturated fat, and sodium when the source supports them. Never invent
    missing micronutrients or pretend an image provides laboratory precision.
-7. Save the meal using `templates/meal-record.md` under
+9. Save the meal using `templates/meal-record.md` under
    `records/meals/YYYY-MM-DD-HHMM-short-name.md`. Rebuild that date's cumulative
    totals with `templates/daily-nutrition.md` under `records/daily/` without
    deleting user notes.
-8. Compare totals with an explicit user- or clinician-provided target only. Otherwise
+10. Compare totals with an explicit user- or clinician-provided target only. Otherwise
    report totals and state that no individualized target is on file.
 
 Present the result with the food table first, then uncertainty, cited sources, and

@@ -22,3 +22,12 @@ identity and portion are confirmed; it reduces remote-call use for a meal.
 
 Never call state-changing food, diet, body-weight, recipe, account, or image
 recognition endpoints from this Skill.
+
+## Source Aggregation
+
+Use this API alongside, not instead of, authoritative web research. Package labels
+supplied by the user take precedence. For unlabelled food, compare the Boohee value
+with a manufacturer, restaurant, regulator, or authoritative food-composition
+source on the same per-100g or serving basis. Do not average conflicts; retain both
+provenance records and explain the uncertainty. An exhausted daily quota or API
+failure switches the lookup to the web source without retrying the API.
