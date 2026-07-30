@@ -1,24 +1,24 @@
 # health-coach
 
-This Fork adapts the upstream health-coach Skill for a private Panacea health
-Wiki. It supports meal photo or text analysis, nutrition-label transcription,
-longitudinal records, and evidence-based health information.
+This Fork is a focused extension for Panacea, not a replacement health agent. It
+provides only three capabilities:
 
-## What Changed
+- Meal analysis from photos, descriptions, menus, and package labels.
+- Weight and body-measurement records with transparent trends.
+- Evidence-based supplement review and user-reported supplement tracking.
 
-- Health data is written only to `WIKI_PATH`, never to a repository-local
-  `health/` directory.
-- Packaged-food labels and net content supplied by the user take priority.
-- Photo-only portions are ranges with confidence, not precise measurements.
-- Every calculated nutrition value requires a traceable source and access date.
-- Daily totals are compared only with targets explicitly supplied by the user or
-  clinician.
-- Medical questions require evidence-based sources and do not provide diagnosis,
-  prescriptions, or medication dose changes. Traditional Chinese medicine is out
-  of scope.
+Medical questions, laboratory reports, symptoms, prescribed medicines, emergency
+guidance, and personal-Wiki governance remain with Panacea's existing SOUL and
+Skills. The Fork must not override those rules.
 
-The upstream static tables remain in repository history but are not authoritative
-data sources for this Fork. See `references/evidence-sources.md`.
+## Operating Principles
+
+- Store personal data only under `WIKI_PATH`.
+- Use package labels and net content before any image estimate.
+- Express image-only portions as ranges with confidence.
+- Attach a source and access date to calculated nutrition values.
+- Do not set nutrition targets, prescribe diets, diagnose, prescribe, or adjust a
+  medicine or supplement dose.
 
 ## Initialize a Private Wiki
 
@@ -26,15 +26,7 @@ data sources for this Fork. See `references/evidence-sources.md`.
 WIKI_PATH=/path/to/private-health-wiki bash scripts/init.sh
 ```
 
-The script creates only missing folders and templates. It never overwrites an
-existing record or calculates an individualized diet target.
-
-## Meal Records
-
-Use `templates/meal-record.md` for one meal and
-`templates/daily-nutrition.md` for its cumulative daily summary. Record source,
-portion range, confidence, energy, protein, carbohydrate, fat, fiber, saturated
-fat, and sodium when supported by the source.
+The script creates missing templates only and never overwrites records.
 
 ## Attribution and License
 

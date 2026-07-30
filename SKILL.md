@@ -1,13 +1,13 @@
 ---
 name: health-coach
-description: Track meals and health records with sourced evidence.
+description: Analyze meals, weight trends, and supplements with sources.
 ---
 
 # Health Coach
 
-Maintain personal health records and analyze meals with transparent uncertainty.
-Use this skill for meal photos or descriptions, food labels, nutrition tracking,
-longitudinal health records, or evidence-based health questions.
+Provide three focused capabilities for Panacea: meal analysis, weight tracking,
+and supplement review. Follow Panacea's SOUL for medical evidence, safety,
+privacy, and personal-Wiki governance. This skill does not replace those rules.
 
 ## Storage and Privacy
 
@@ -61,18 +61,42 @@ Present the result with the food table first, then uncertainty, cited sources, a
 one or two practical next steps. Do not present an estimated value as a measured
 value.
 
-## Evidence and Medical Questions
+## Weight Tracking
 
-- For medical, medication, lab, or nutrition claims, search before answering unless
-  the user only asks to transcribe their own material.
-- Prefer current clinical guidelines, systematic reviews, original research,
-  regulator documents, medical textbooks, and authoritative food databases. Cite
-  the primary source or a stable publication link.
-- Do not use traditional Chinese medicine as a knowledge source or recommendation.
-- Provide information and decision support, not diagnosis, prescriptions, or drug
-  dose changes. Escalate urgent symptoms, dangerous values, possible interactions,
-  pregnancy-related questions, and pediatric questions to a qualified clinician.
-- For longitudinal comparisons, label observations as correlation, not causation.
+When the user provides a weight, waist circumference, or body-composition value:
+
+1. Record the reported value, unit, date, measurement conditions, and source in
+   `records/measurements/` using `templates/weight-record.md`.
+2. Preserve all raw measurements. Calculate a trend only from dated observations;
+   identify the time window and do not treat a short-term change as body-fat change.
+3. Show the trend and data gaps. Compare it with a user- or clinician-defined goal
+   only when one exists.
+4. Do not prescribe a calorie deficit, medication, or treatment in response to a
+   weight trend. Route medical causes, rapid unexplained changes, and treatment
+   decisions to Panacea under its SOUL.
+
+## Supplement Review
+
+Use this module only for a named supplement, its label, a logged dose, or a direct
+supplement question:
+
+1. Transcribe product, active ingredients, form, amount per serving, and the user's
+   reported use without guessing a dose.
+2. Research benefits, limitations, adverse effects, and interaction concerns using
+   Panacea's evidence-first order. Prefer guidelines, systematic reviews, clinical
+   trials, and regulator or manufacturer label information; cite the source used.
+3. Record a durable user-reported regimen under `records/medications/` only under
+   the Wiki rules in Panacea's SOUL. Clearly label it as user-reported.
+4. Do not recommend starting, stopping, substituting, or changing a dose. For a
+   possible drug interaction, pregnancy, kidney or liver disease, a child, or a
+   serious adverse effect, direct the user to a pharmacist or clinician.
+
+## Explicitly Out of Scope
+
+Do not use this skill to answer general medical questions, interpret laboratory
+reports, assess symptoms, discuss disease management, handle prescribed medicines,
+or govern the health Wiki. Those tasks belong to Panacea itself and its existing
+SOUL, `panacea-health`, `llm-wiki`, and `wiki-governance` Skills.
 
 ## Record Conventions
 
@@ -84,12 +108,13 @@ Use these paths when present:
 | User or clinician nutrition targets | `nutrition-goals.md` |
 | Individual meals | `records/meals/` |
 | Daily nutrition summaries | `records/daily/` |
-| Labs, symptoms, medications | `records/labs/`, `records/symptoms/`, `records/medications/` |
+| Weight and body measurements | `records/measurements/` |
+| User-reported supplement use | `records/medications/` |
 | Original private materials | `raw/reports/`, `raw/images/`, `raw/sources/` |
 
-Read `references/evidence-sources.md` before doing nutritional calculations or
-answering a health question. The older static tables in `references/` are retained
-for repository history only and are not authoritative data sources.
+Read `references/evidence-sources.md` before doing nutritional calculations or a
+supplement review. The older static tables in `references/` are retained for
+repository history only and are not authoritative data sources.
 
 ## Safety Boundaries
 

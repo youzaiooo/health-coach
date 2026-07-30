@@ -13,11 +13,12 @@ Keep the source URL or formal citation and access date with every numeric estima
 If values conflict, explain which source was selected and why. Do not derive numbers
 from a search-result snippet, an influencer post, or an uncited aggregator.
 
-## Health and Medical Claims
+## Supplement Claims
 
 Prefer, in order: current specialty-society or government guidelines; systematic
-reviews and meta-analyses; original research; drug-regulator product information;
-medical textbooks. State the evidence type and publication date where it matters.
+reviews and meta-analyses; original research; regulator and current product-label
+information; medical textbooks. State the evidence type and publication date where
+it matters.
 
 Do not use traditional Chinese medicine sources. Do not substitute a reference range
-or statistical association for a diagnosis or a treatment decision.
+or statistical association for a diagnosis, dose change, or treatment decision.

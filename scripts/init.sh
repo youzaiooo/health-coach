@@ -21,6 +21,7 @@ esac
 mkdir -p "$wiki_path" \
   "$wiki_path/records/meals" \
   "$wiki_path/records/daily" \
+  "$wiki_path/records/measurements" \
   "$wiki_path/records/labs" \
   "$wiki_path/records/symptoms" \
   "$wiki_path/records/medications" \
