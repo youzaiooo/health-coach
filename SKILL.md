@@ -37,7 +37,8 @@ For every meal photo, food description, menu, or package label:
 2. Transcribe a visible nutrition label and net content exactly when supplied. Treat
    this as the primary nutrition source for that product.
 3. For foods without a label, look up a traceable source in this order:
-   product manufacturer or restaurant; an authoritative food-composition database;
+   the `boohee-food-db` Skill and its private Wiki cache; product manufacturer or
+   restaurant; an authoritative food-composition database;
    then a reproducible recipe with stated ingredients. Record the URL or citation
    and access date. Do not use search snippets, lifestyle articles, or uncited
    database entries as numeric sources.

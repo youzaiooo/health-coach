@@ -1,0 +1,4 @@
+interface:
+  display_name: "Boohee Food Database"
+  short_description: "Search and cache Boohee food nutrition data."
+  default_prompt: "Use the Boohee food database to look up and cache nutrition data for a meal."
