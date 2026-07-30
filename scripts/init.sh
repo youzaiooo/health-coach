@@ -43,5 +43,6 @@ copy_if_missing() {
 
 copy_if_missing "$skill_dir/config/profile.template.md" "$wiki_path/profile.md"
 copy_if_missing "$skill_dir/config/nutrition-goals.template.md" "$wiki_path/nutrition-goals.md"
+copy_if_missing "$skill_dir/templates/dietary-profile.md" "$wiki_path/dietary-profile.md"
 
 echo "Private health Wiki is ready at $wiki_path"

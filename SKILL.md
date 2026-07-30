@@ -29,7 +29,32 @@ WIKI_PATH=/path/to/private-health-wiki bash scripts/init.sh
 The script only creates missing directories and templates. It never overwrites
 existing records or calculates a diet prescription.
 
-## Meal Workflow
+## Dietary Profile and Meal Workflow
+
+Treat a user message or image that clearly describes food or drink consumed as a
+meal-log event by default. Record it unless the user says not to record it, asks
+to correct or delete it, or the message is only a hypothetical question. Keep the
+profile at `dietary-profile.md`; create it from
+`templates/dietary-profile.md` only when missing. Do not populate health goals,
+restrictions, allergies, diagnoses, or clinician instructions unless the user has
+explicitly supplied them.
+
+For each log event:
+
+1. Preserve any original image under `raw/images/` with a date/time-based name
+   when it can be retained privately; reference it from the meal record. Do not
+   store the image outside `WIKI_PATH` or treat its contents as a measurement.
+2. Create one record per consumed occasion under
+   `records/meals/YYYY-MM-DD-HHMM-short-name.md`. If the time or meal type is
+   unknown, use the message-received time, mark it as provisional, and allow the
+   user to correct it later. Do not silently assign breakfast, lunch, or dinner.
+3. Link the meal record into `records/daily/YYYY-MM-DD.md` and recalculate only
+   machine-maintained cumulative values. Preserve all user notes and prior meal
+   links. Never merge distinct foods or overwrite historical source data.
+4. Update `dietary-profile.md` only with durable, user-confirmed preferences or
+   explicitly provided goals. Do not infer a pattern or target from one meal.
+
+## Meal Analysis
 
 For every meal photo, food description, menu, or package label:
 
@@ -58,7 +83,7 @@ For every meal photo, food description, menu, or package label:
 8. Calculate the best estimate and range for energy, protein, carbohydrate, total
    fat, fiber, saturated fat, and sodium when the source supports them. Never invent
    missing micronutrients or pretend an image provides laboratory precision.
-9. Save the meal using `templates/meal-record.md` under
+9. Complete the log event using `templates/meal-record.md` under
    `records/meals/YYYY-MM-DD-HHMM-short-name.md`. Rebuild that date's cumulative
    totals with `templates/daily-nutrition.md` under `records/daily/` without
    deleting user notes.
@@ -113,6 +138,7 @@ Use these paths when present:
 | Data | Path |
 | --- | --- |
 | Personal baseline and preferences | `profile.md` |
+| Dietary logging preferences and user-confirmed patterns | `dietary-profile.md` |
 | User or clinician nutrition targets | `nutrition-goals.md` |
 | Individual meals | `records/meals/` |
 | Daily nutrition summaries | `records/daily/` |
